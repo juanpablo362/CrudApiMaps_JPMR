@@ -28,5 +28,26 @@ namespace CrudUbicaciones_JPMR
            gvUbicaciones.DataSource = oubicacionesDAL.Listar(); ;
            gvUbicaciones.DataBind();
         }
+
+        // Método encardado de recoloctar los datos de nuestra interfaz
+        public UbicacionesBLL datosUbicacion()
+        {
+            int ID = 0;
+            int.TryParse(txtID.Value, out ID);
+            oubicacionesBLL=new UbicacionesBLL();
+            oubicacionesBLL.ID = ID;
+            oubicacionesBLL.Ubicacion = txtUbicacion.Text;
+            oubicacionesBLL.Latitud=txtLat.Text;
+            oubicacionesBLL.Longitud = txtLong.Text;
+
+            return oubicacionesBLL;
+        }
+
+        protected void AgregarRegistro(object sender, EventArgs e)
+        {
+            oubicacionesDAL=new UbicacionesDAL();
+            oubicacionesDAL.Agregar(datosUbicacion());
+            ListarUbicaciones(); // Para mostrarla en el GV
+        }
     }
-}
+}   

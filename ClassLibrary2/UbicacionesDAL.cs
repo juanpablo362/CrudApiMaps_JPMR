@@ -6,7 +6,10 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using DAL;
 using BLL;
+using System.Data.SqlTypes;
+using System.Data.Sql;
 
 namespace DAL
 {
@@ -19,7 +22,17 @@ namespace DAL
             oConexion = new SQLDBHelper();
         }
 
-        public void Agregar() { }
+        public bool Agregar(UbicacionesBLL OubicacionesBLL)
+        {
+            SqlCommand cmdComando = new SqlCommand();
+
+            cmdComando.CommandText = "INSERT INTO Direcciones (Ubicacion, Latitud, longitud) VALUES (@Ubicacion, @Latitud, @longitud)";
+            cmdComando.Parameters.Add("@Ubicacion", SqlDbType.VarChar).Value = OubicacionesBLL.Ubicacion;
+            cmdComando.Parameters.Add("@Latitud", SqlDbType.VarChar).Value = OubicacionesBLL.Latitud;
+            cmdComando.Parameters.Add("@Longitud", SqlDbType.VarChar).Value = OubicacionesBLL.Longitud;
+
+            return oConexion.EjecutarComandoSQL(cmdComando);
+        }
 
         public void Eliminar() { }
 
