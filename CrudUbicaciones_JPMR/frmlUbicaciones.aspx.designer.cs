@@ -24,6 +24,15 @@ namespace CrudUbicaciones_JPMR
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control ScriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// Control txtID.
         /// </summary>
         /// <remarks>
@@ -78,22 +87,22 @@ namespace CrudUbicaciones_JPMR
         protected global::System.Web.UI.WebControls.Button btnModificar;
 
         /// <summary>
-        /// Control bttEliminar.
+        /// Control btnEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttEliminar;
+        protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
-        /// Control BtnLimpiar.
+        /// Control btnLimpiar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnLimpiar;
+        protected global::System.Web.UI.WebControls.Button btnLimpiar;
 
         /// <summary>
         /// Control gvUbicaciones.

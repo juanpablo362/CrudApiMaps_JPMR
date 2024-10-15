@@ -14,9 +14,11 @@
 <%--Complementos del plugin--%>
 <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDqTDKfWQPS67DYvZbZxbIQDtAPtS4kBiM'></script>
 <script src="js/locationpicker.jquery.js"></script>
+<script src="js/modal.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -24,7 +26,7 @@
                         <label for="exampleInputEmail">Ubicación</label>
                         <asp:HiddenField ID="txtID" runat="server" />
                         <asp:TextBox ID="txtUbicacion" CssClass="form-control" runat="server"></asp:TextBox>
-                    </div>
+                    </div>  
                     <div class="form-group">
                         <div id="ModalMapPreview" style="width: 100%; height: 300px;"></div>
                     </div>
@@ -37,18 +39,18 @@
                     </div>
                     <%--Controles de altas, bajas y cambios--%>
                     <div class="form-group">
-                        <asp:Button ID="btnAgregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" OnClick="AgregarRegistro" />
-                        <asp:Button ID="btnModificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" Enabled="false"/>
-                        <asp:Button ID="bttEliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false" Enabled="false"/>
-                        <asp:Button ID="BtnLimpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" />
+                        <asp:Button ID="btnAgregar" CssClass="btn btn-success" runat="server" Text="Agregar" UseSubmitBehavior="false" OnClick="AgregarRegistro" EnableTheming="True"/>
+                        <asp:Button ID="btnModificar" CssClass="btn btn-warning" runat="server" Text="Modificar" UseSubmitBehavior="false" OnClick="ModificarRegistro"/>
+                        <asp:Button ID="btnEliminar" CssClass="btn btn-danger" runat="server" Text="Eliminar" UseSubmitBehavior="false"  OnClick="EliminarRegistro"/>
+                        <asp:Button ID="btnLimpiar" CssClass="btn btn-default" runat="server" Text="Limpiar" UseSubmitBehavior="false" OnClick="LimpiarRegistros"/>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <br />
                     <h1>Ubicaciones</h1>
-                    <asp:GridView ID="gvUbicaciones" runat="server" CssClass="table-responsive table table-bordered">
+                    <asp:GridView ID="gvUbicaciones" runat="server" CssClass="table-responsive table table-bordered" EnabledTheming="True" OnRowCommand="SeleccionarRegistro">
                         <Columns>
-                            <asp:ButtonField CommandName="btnSeleccion" Text="Seleccionar">
+                            <asp:ButtonField CommandName="btnSeleccionar" Text="Selecionar">
                             <ControlStyle CssClass="btn btn-info" />
                             </asp:ButtonField>
                         </Columns>
@@ -68,10 +70,9 @@
                 longitudeInput: $("#<%=txtLong.ClientID%>"),
                 locationNameInput: $("#<%=txtUbicacion.ClientID%>")
             },
-            enableAutocomplete: true
+            enableAutocomplete: true    
         });
-    </script>
-        
+      </script>
     </form>
     </body>
 </html>

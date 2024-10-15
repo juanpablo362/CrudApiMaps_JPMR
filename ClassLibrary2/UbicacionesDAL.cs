@@ -34,10 +34,33 @@ namespace DAL
             return oConexion.EjecutarComandoSQL(cmdComando);
         }
 
-        public void Eliminar() { }
+        // Eliminar un registro
+        public bool Eliminar(UbicacionesBLL OubicacionesBLL) 
+        {
+            SqlCommand cmdComando = new SqlCommand();
 
-        public void Modificar() { }
+            cmdComando.CommandText = "DELETE FROM Direcciones WHERE ID = @ID";
+            cmdComando.Parameters.Add("@ID", SqlDbType.Int).Value = OubicacionesBLL.ID;
+
+            return oConexion.EjecutarComandoSQL(cmdComando);
+        }
+
+        public bool  Modificar(UbicacionesBLL oUbicacionesBLL) 
+        {
+            SqlCommand cmdComando = new SqlCommand();
+
+            cmdComando.CommandText = "UPDATE Direcciones SET Ubicacion = @Ubicacion, Latitud = @Latitud, Longitud = @Longitud WHERE ID = @ID";
+            cmdComando.Parameters.Add("@Ubicacion", SqlDbType.VarChar).Value = oUbicacionesBLL.Ubicacion;
+            cmdComando.Parameters.Add("@Latitud", SqlDbType.VarChar).Value = oUbicacionesBLL.Latitud;
+            cmdComando.Parameters.Add("@Longitud", SqlDbType.VarChar).Value = oUbicacionesBLL.Longitud;
+
+            cmdComando.Parameters.Add("@ID", SqlDbType.Int).Value = oUbicacionesBLL.ID;
+            return oConexion.EjecutarComandoSQL(cmdComando);
+
+        }
         //Señeccionar los registros de la tablla mediante un SELECT
+
+
         public DataTable Listar()
         {
             SqlCommand cmdComando = new SqlCommand();
@@ -49,6 +72,15 @@ namespace DAL
             DataTable TablaResultante = oConexion.EjecutarSetenciaSQL(cmdComando);
 
             return TablaResultante;
+        }
+
+        public bool Limpiar()
+        {
+            SqlCommand cmdComando = new SqlCommand();
+            cmdComando.CommandText = "Delete from Direcciones";
+            cmdComando.CommandType=CommandType.Text;
+
+            return oConexion.EjecutarComandoSQL(cmdComando);
         }
     }
 }

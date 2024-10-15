@@ -38,5 +38,10 @@ namespace DAL
             strConexion.Close();
             return Tabla;
         }
+
+        internal bool EjecutarComandoSQL(object cmdComando)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
